@@ -9,8 +9,6 @@ A free dashboard and auto-tuner for home miners (Bitaxe / NerdQAxe / NerdOCTAxe 
 | File | What it is |
 | --- | --- |
 | **MinerHearth-Setup-v1.17.0.exe** | Windows installer (recommended). Installs for your Windows account only, no administrator rights needed. Also tidies up an install under the old name (keeps its data). |
-| **MinerHearth-Setup-v1.17.0.zip** | The same installer inside a zip, for browsers or networks that block downloading `.exe` files. |
-| **MinerHearth-v1.17.0-portable.zip** | Portable Windows version: unzip anywhere and run `MinerHearth.exe`. Also contains the source code. |
 | **miner-hearth-umbrel-v1.17.0.zip** | Umbrel community app store (headless web edition in Docker), with instructions. |
 | **miner-hearth-5tratumos-v1.17.0.zip** | 5tratumOS: a Custom Store, a GLOBAL-catalogue submission and plain Docker Compose, with instructions. |
 | **SHA256SUMS.txt** | Checksums to verify your download. |
