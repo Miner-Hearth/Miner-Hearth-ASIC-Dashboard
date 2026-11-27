@@ -1,0 +1,25 @@
+# keep the image small and free of personal data
+.git
+.github
+**/__pycache__
+*.pyc
+userdata/
+logs/
+saved_pools.json
+devices.json
+*.jsonl*
+*.log
+build/
+build-wine/
+dist/
+*.exe
+*.zip
+.venv*/
+docs/
+packaging/
+tools/
+umbrel/
+5tratumos/
+deploy/
+*.bat
+*.ps1

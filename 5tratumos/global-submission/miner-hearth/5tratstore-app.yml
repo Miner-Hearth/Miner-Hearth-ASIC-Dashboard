@@ -1,0 +1,39 @@
+id: miner-hearth
+name: Miner Hearth
+tagline: Dashboard, alerts and careful autotuning for home ASIC miners
+description: >-
+  Miner Hearth watches the ASIC miners on your network (AxeOS machines such as Bitaxe and
+  NerdQAxe, Antminer, Braiins OS, Avalon, Whatsminer and others): hashrate, temperatures,
+  shares, pools and block-found alerts, with an optional autotuner that is off until you turn it
+  on per machine. Optional node monitoring watches Bitcoin Core / Knots (or another coin's node
+  with the same RPC), LND / Core Lightning, Fulcrum / Electrs and this host's CPU, temperature,
+  memory and disk. RPC credentials stay in the app's storage and are never sent to the browser.
+  Add miners by IP address or set the subnet to scan in Settings. No telemetry; nothing is
+  uploaded.
+version: 1.17.0
+category: Mining infrastructure
+developer: Miner Hearth contributors
+website: https://github.com/<github-user>/<repo>
+repo: https://github.com/<github-user>/<repo>
+support: https://github.com/<github-user>/<repo>/issues
+port: 33180
+path: /
+services:
+  app_proxy:
+    environment:
+      APP_HOST: app
+      APP_PORT: 8080
+  app:
+    image: ghcr.io/<github-user>/miner-hearth:1.17.0@sha256:<image-digest>
+    restart: unless-stopped
+    user: "1000:1000"
+    init: true
+    stop_grace_period: 30s
+    volumes:
+      - ${APP_DATA_DIR}/data:/data
+    environment:
+      MINER_HEARTH_HOME: /data
+      MINER_HEARTH_PORT: "8080"
+      MINER_HEARTH_TRUSTED_NETWORKS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+    security_opt:
+      - no-new-privileges:true

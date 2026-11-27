@@ -1,0 +1,42 @@
+{
+  "_comment": "Shipped defaults and limits for Miner Hearth v1.17.1. Discovered miners and user preferences are stored separately in userdata/devices.json so future updates never erase your machines.",
+  "log_dir": "logs",
+  "log_file": "autotune.log",
+  "csv_file": "autotune.csv",
+  "userdata_file": "userdata/devices.json",
+  "state_file": "autotune-state.json",
+  "dashboard": {
+    "_comment": "The dashboard is served by this same program. Leave host at 127.0.0.1 so only this PC can open it. Use 0.0.0.0 if you want to view it from another computer on your LAN.",
+    "enabled": true,
+    "host": "127.0.0.1",
+    "port": 8080,
+    "scan_subnet": ""
+  },
+  "defaults": {
+    "poll_interval_sec": 15,
+    "cooldown_sec": 180,
+    "cool_polls_required": 3,
+    "hysteresis_c": 3,
+    "step_mhz": 25,
+    "emergency_step_mhz": 50,
+    "restart_after_change": false,
+    "restart_wait_sec": 45,
+    "timeout_sec": 8,
+    "asic_target_c": 59.0,
+    "asic_max_c": 62.5,
+    "vr_target_c": 62.0,
+    "vr_max_c": 65.0,
+    "max_freq": 850,
+    "voltage_start_mv": 1210,
+    "emergency_voltage_mv": 1210,
+    "voltage_step_mv": 10,
+    "min_voltage_mv": 1150,
+    "max_voltage_mv": 1250,
+    "error_target_pct": 0.0,
+    "error_low_pct": 0.5,
+    "error_high_pct": 1.0,
+    "error_window_polls": 5,
+    "low_error_polls_required": 5
+  },
+  "devices": []
+}

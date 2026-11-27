@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      # the dashboard is reached only through Umbrel's login-protected proxy
+      APP_HOST: minerhearth-miner-hearth_web_1
+      APP_PORT: 8080
+
+  web:
+    # Published by the docker workflow of github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard (amd64 + arm64).
+    # Optional: pin it by adding the digest from the workflow run, e.g. miner-hearth:1.17.1@sha256:<64 hex>
+    image: ghcr.io/miner-hearth/miner-hearth:1.17.1
+    user: "1000:1000"
+    init: true
+    restart: on-failure
+    stop_grace_period: 30s
+    volumes:
+      - ${APP_DATA_DIR}/data:/data
+    environment:
+      MINER_HEARTH_HOME: /data
+      MINER_HEARTH_PORT: "8080"
+      # Requests arrive from Umbrel's proxy on the app network; treat them like the Miner Hearth
+      # computer itself (full control). Umbrel's login protects the dashboard.
+      MINER_HEARTH_TRUSTED_NETWORKS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+      # Optional: Umbrel's Bitcoin node and Electrs, used by Settings > Node Monitoring when
+      # those apps are installed (empty otherwise). Credentials stay in this container.
+      APP_BITCOIN_NODE_IP: ${APP_BITCOIN_NODE_IP:-}
+      APP_BITCOIN_RPC_PORT: ${APP_BITCOIN_RPC_PORT:-}
+      APP_BITCOIN_RPC_USER: ${APP_BITCOIN_RPC_USER:-}
+      APP_BITCOIN_RPC_PASS: ${APP_BITCOIN_RPC_PASS:-}
+      APP_ELECTRS_NODE_IP: ${APP_ELECTRS_NODE_IP:-}
+      APP_ELECTRS_NODE_PORT: ${APP_ELECTRS_NODE_PORT:-}
+    security_opt:
+      - no-new-privileges:true

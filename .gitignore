@@ -1,0 +1,36 @@
+# Your own data: machines, passwords, saved pools, history, event logs (never commit)
+userdata/
+logs/
+*.log
+*.jsonl
+*.jsonl.gz
+saved_pools.json
+autotune-state.json
+autotune_state.json
+devices.json
+
+# Local config overrides (the shipped config.json stays with "devices": [])
+config.local.json
+*.local.json
+config.json.bak*
+*.bak
+
+# Build output and binaries (publish binaries on the Releases page instead)
+build/
+build-wine/
+dist/
+*.exe
+*.zip
+*.spec.bak
+.venv*/
+venv/
+
+# Python / editor clutter
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

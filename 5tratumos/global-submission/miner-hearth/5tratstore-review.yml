@@ -1,0 +1,47 @@
+schemaVersion: 1
+status: proposed
+appId: miner-hearth
+appVersion: 1.17.0
+reviewedAt: ""
+reviewedBy: ""
+upstream:
+  sourceUrl: https://github.com/<github-user>/<repo>
+  license: MIT
+  licenseEvidence: https://github.com/<github-user>/<repo>/blob/v1.17.0/LICENSE
+delivery:
+  mode: direct-upstream-artifact
+  storePayload: recipe-only
+  mirrorsThirdPartyPayload: false
+rights:
+  packageOriginal: true
+  softwareDistributionCleared: false
+  containerUseCleared: false
+  listingTextCleared: true
+  artworkCleared: false
+  noticesIncluded: false
+compatibility:
+  osVersions:
+    - pending-maintainer-test
+  architectures:
+    - amd64
+    - arm64
+  installTested: false
+  startTested: false
+  updateTested: false
+  uninstallTested: false
+security:
+  privileged: false
+  hostNetwork: false
+  dockerSocket: false
+  hostMountsReviewed: false
+  devicesReviewed: false
+  networkEndpointsReviewed: false
+notes: >-
+  Submitted by the upstream project itself; the image is built from the upstream repository by its own
+  GitHub Actions workflow and published to GHCR (linux/amd64 and linux/arm64). One persistent folder
+  (APP_DATA_DIR/data mounted at /data). No privileged mode, host networking, Docker socket, host mounts or
+  devices. Network endpoints: HTTP to the miners and nodes the user adds on the local network; optional
+  user-configured webhooks; no telemetry. The dashboard trusts requests that arrive through the app proxy
+  (MINER_HEARTH_TRUSTED_NETWORKS); it publishes no host port of its own. Automatic miner discovery needs the
+  subnet set in Settings because the container is not on the host network. The arm64 image is built by
+  QEMU in CI and has not been run on real ARM hardware by the developer; amd64 tested only outside 5tratumOS.

@@ -1,0 +1,98 @@
+Miner Hearth v1.17.1 - Quick start
+==================================
+
+Miner Hearth tunes and watches home miners (Bitaxe / NerdQAxe / NerdOCTAxe on AxeOS,
+Antminer S19 on stock firmware or Braiins OS+) from one dashboard window on a
+Windows 10/11 PC. Nothing is preset: you add your own machines with LAN Scan.
+
+OPTION A - Portable zip (this download)
+---------------------------------------
+1. Unzip anywhere you can write to (for example Documents\Miner Hearth).
+2. Double-click MinerHearth.exe (SmartScreen: "More info" > "Run anyway").
+3. enable-autostart.bat / disable-autostart.bat turn start-at-sign-in on or off.
+To update, replace MinerHearth.exe (and the other program files) but keep the
+userdata\ folder. Smaller updates can also be applied while it runs: see
+Live updates below.
+
+OPTION B - Installer (only if you were given MinerHearth-Setup-v1.17.0.exe)
+--------------------------------------------------------------------------
+1. Run MinerHearth-Setup-v1.17.0.exe. No administrator rights are needed; it
+   installs for your Windows account only, in
+       %LOCALAPPDATA%\Programs\Miner Hearth
+2. Windows SmartScreen may say "Windows protected your PC" because the program is
+   not code-signed. Click "More info", then "Run anyway".
+3. Choose the options you want (Start Menu shortcut, Desktop shortcut, start with
+   Windows) and click Install. Tick "Launch Miner Hearth" on the last page.
+4. In the dashboard, click "Scan LAN" (or "Add machine") to add your miners.
+   Autotune is OFF for every machine until you turn it on.
+
+Upgrading: run the newer Setup over the old one. Your machines, settings and logs
+(userdata\, logs\ and config.json) are kept. Close Miner Hearth first, or let the
+installer close it for you.
+
+Uninstalling: Windows Settings > Apps > Miner Hearth > Uninstall. Your settings and
+logs are KEPT unless you tick "Also delete my settings, machines and logs".
+
+Coming from the portable zip? Your machines live in the old folder's userdata\
+folder. Either copy that userdata folder into
+    %LOCALAPPDATA%\Programs\Miner Hearth\
+while Miner Hearth is closed, or use Settings > Backup / Restore (back up in the old
+copy, restore in the new one). If the old copy starts with Windows, tick
+"Start Miner Hearth when I sign in to Windows" in the installer; that moves the
+sign-in entry to the installed copy.
+
+MOVING FROM THE OLD NAME (Nonce Keeper, up to v1.16.3)
+------------------------------------------------------
+Miner Hearth v1.17.0 is the same program under a new name. Your data comes along:
+- Installer: the component "Move from the old name" (ticked when an old install is
+  found) closes the old program (it asks first), removes its program files,
+  shortcuts, sign-in entry and Apps entry, and KEEPS its userdata\, logs\ and
+  config.json. Miner Hearth copies that data into its own folder on first start.
+- Portable zip: unzip miner-hearth\ next to the old folder (or over it) and start
+  MinerHearth.exe; the old data is copied on first start. Delete NonceKeeper.exe.
+- Nothing is overwritten and the old data is never changed; see
+  userdata\migration.json for what was copied.
+- The old program cannot live-update itself to v1.17.0: install this version once
+  with the installer or the zip. Later v1.17.x live updates work as before.
+
+Linux / Docker / Umbrel / 5tratumOS
+-----------------------------------
+A headless web edition runs on Linux (python3 miner_dashboard.py --headless) and in
+Docker; see deploy/README-LINUX.md, umbrel/README.md and 5tratumos/README.md in the
+source or the separate Umbrel / 5tratumOS downloads.
+
+Live updates (v1.16, off until you turn them on)
+------------------------------------------------
+Settings > Live Updates > tick "Allow live updates". Then pick an update package
+(.zip) or paste its https:// URL, optionally paste the SHA-256 the publisher gave
+you, and click "Check package". Miner Hearth verifies every file against the
+package's SHA-256 manifest (and its signature, if you added the publisher's key
+under "Trusted signing keys") and shows what it contains. Click "Apply update".
+Coin data, miner plugins and dashboard files work at once; program files need
+"Quick restart" (the tuner finishes its step, saves its state and carries on).
+"Roll back" returns to the version before; "Remove all updates" returns to this
+version as shipped. Nothing is ever downloaded or installed on its own.
+Publishers build packages with tools\make_update.py.
+
+Saved pools (v1.16.2)
+---------------------
+Settings > Saved Pools keeps the pools you use (name, stratum address, username,
+password, optional coin) in userdata\saved_pools.json; it starts empty. Add one
+with the form, or click "Save this pool" on a machine's pool info. When you change
+a machine's pool (card > Edit pool), pick a saved pool to fill in the fields and
+tick "Use this machine's name as the worker" if you like. Put {worker} in a saved
+username to have each machine's name filled in. Export / Import JSON copies the
+list to another PC (passwords only if you tick "include passwords").
+
+Your data
+---------
+userdata\   your machines, passwords you saved, settings and history (do not share)
+logs\       the text log and CSV
+userdata\logs\nk-events-*.jsonl(.gz)
+            v1.15.4+ full event log. Personal data (pool users / wallets, Wi-Fi
+            names, MAC addresses, passwords, tokens) is removed and IP addresses
+            are masked before anything is written. Settings > Full Event Log >
+            "Export full log" makes one zip that is safe to send to someone
+            helping you troubleshoot.
+
+Donate BTC: bc1q3m8usp6mffv4txhwcltq9lu9jltx02eyukgrvf

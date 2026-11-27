@@ -1,0 +1,29 @@
+# Miner Hearth headless web edition as a systemd service (no Docker; Python 3.10 or newer, standard library only).
+#   sudo useradd --system --create-home --home-dir /var/lib/miner-hearth miner-hearth
+#   sudo cp -r <the program folder> /opt/miner-hearth
+#   sudo cp deploy/miner-hearth.service /etc/systemd/system/ && sudo systemctl daemon-reload
+#   sudo systemctl enable --now miner-hearth      then open http://<this-computer>:8080
+[Unit]
+Description=Miner Hearth (headless web dashboard)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=miner-hearth
+Environment=MINER_HEARTH_HOME=/var/lib/miner-hearth
+Environment=MINER_HEARTH_HOST=0.0.0.0
+Environment=MINER_HEARTH_PORT=8080
+Environment=MINER_HEARTH_RESTART_BY_EXIT=1
+# Browsers on these networks get full control; edit to suit (empty = LAN devices are read-only)
+Environment=MINER_HEARTH_TRUSTED_NETWORKS=192.168.0.0/16
+ExecStart=/usr/bin/python3 /opt/miner-hearth/miner_dashboard.py --headless
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/miner-hearth
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

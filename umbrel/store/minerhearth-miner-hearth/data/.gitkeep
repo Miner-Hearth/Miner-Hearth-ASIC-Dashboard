@@ -1,0 +1,1 @@
+# Keeps this folder in git. Umbrel copies it to the app data folder, which Miner Hearth uses as /data.

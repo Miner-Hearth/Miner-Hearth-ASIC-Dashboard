@@ -1,0 +1,37 @@
+manifestVersion: 1
+id: minerhearth-miner-hearth
+category: bitcoin
+name: Miner Hearth
+version: "1.17.1"
+tagline: Dashboard, alerts and autotuner for your home ASIC miners
+icon: https://raw.githubusercontent.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard-Umbrel-Store/main/minerhearth-miner-hearth/icon.png
+description: >-
+  Miner Hearth watches the ASIC miners on your home network (Bitaxe / NerdQAxe and other AxeOS
+  machines, Antminer, Braiins OS, Avalon, Whatsminer and more): hashrate, temperatures, shares,
+  pools and block-found alerts, with an optional careful autotuner.
+
+
+  This Umbrel app runs the headless web edition. It can also watch your Umbrel Bitcoin node
+  (sync, height, peers, mempool, disk) and Electrs, plus this Umbrel's CPU, temperature, memory and
+  disk: turn it on in Settings > Node Monitoring. RPC credentials stay inside the app and are never
+  sent to the browser.
+
+
+  Note: inside Umbrel, Miner Hearth cannot discover miners by itself on every network. Add your
+  miners by IP address, or set the subnet to scan in Settings.
+releaseNotes: >-
+  v1.17.1: firelit stone-wall dashboard background (Settings > Appearance > Dashboard background),
+  a footer with the running version, and a fix for the "Quick restart needed" message staying on.
+  First Umbrel release: headless web dashboard, node monitoring, host stats.
+developer: Miner Hearth contributors
+website: https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard
+dependencies: []
+repo: https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard
+support: https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard/issues
+port: 21880
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+submitter: Miner-Hearth
+submission: https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard-Umbrel-Store

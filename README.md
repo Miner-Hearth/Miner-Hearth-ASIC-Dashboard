@@ -4,7 +4,7 @@
 
 It runs entirely on your own computer. There is no account, no cloud service and no telemetry. Nothing is preset: you add your own machines with **Scan LAN**, and everything you add stays in a local `userdata` folder.
 
-**Download:** get the latest installer or portable zip from the **[Releases page](https://github.com/<github-user>/<repo>/releases/latest)**.
+**Download:** get the latest installer or portable zip from the **[Releases page](https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard/releases/latest)**.
 
 **Used the program under its old name (up to v1.16.3)?** v1.17.0 is the same program; your machines and settings move over automatically. See [docs/MIGRATION.md](docs/MIGRATION.md).
 
@@ -39,7 +39,7 @@ Tier-2 adapters (everything below Braiins in the table) were built from publishe
 
 ## Quick start (Windows)
 
-1. Download **MinerHearth-Setup-v1.17.0.exe** (or the portable zip) from [Releases](https://github.com/<github-user>/<repo>/releases/latest).
+1. Download **MinerHearth-Setup-v1.17.0.exe** (or the portable zip) from [Releases](https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard/releases/latest).
 2. Run it. Windows SmartScreen may say "Windows protected your PC" because the program isn't code-signed: click **More info → Run anyway**. No administrator rights are needed; it installs for your Windows account only, in `%LOCALAPPDATA%\Programs\Miner Hearth`.
 3. In the dashboard, click **Scan LAN** (or **Add machine**) to find your miners.
 4. Autotune, webhooks, node monitoring and every feature that changes a miner start **off**: turn on what you want in **Settings**.
@@ -53,11 +53,11 @@ A headless web edition serves the same dashboard to any browser:
 ```bash
 python3 miner_dashboard.py --headless --host 0.0.0.0 --port 8080       # Python 3.10+, no packages needed
 docker run -d --name miner-hearth --network host -v "$PWD/data:/data" \
-  -e MINER_HEARTH_TRUSTED_NETWORKS=192.168.1.10/32 ghcr.io/<github-user>/miner-hearth:1.17.0
+  -e MINER_HEARTH_TRUSTED_NETWORKS=192.168.1.10/32 ghcr.io/miner-hearth/miner-hearth:1.17.1
 ```
 
 - [deploy/README-LINUX.md](deploy/README-LINUX.md): options, trusted networks, Docker Compose, systemd.
-- [umbrel/README.md](umbrel/README.md): an Umbrel community app store (uses Umbrel's Bitcoin node and Electrs when present).
+- **Umbrel:** App Store → ⋯ → Community App Stores → add `https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard-Umbrel-Store`, then install **Miner Hearth**. Details: [umbrel/README.md](umbrel/README.md) (uses Umbrel's Bitcoin node and Electrs when present).
 - [5tratumos/README.md](5tratumos/README.md): 5tratumOS Custom Store / GLOBAL submission / plain Docker.
 - The image is built for amd64 and arm64 by [.github/workflows/docker.yml](.github/workflows/docker.yml) when you push a `v*` tag.
 
@@ -66,8 +66,8 @@ docker run -d --name miner-hearth --network host -v "$PWD/data:/data" \
 Miner Hearth is pure Python 3 standard library; no packages are needed to run it.
 
 ```bat
-git clone https://github.com/<github-user>/<repo>.git
-cd <repo>
+git clone https://github.com/Miner-Hearth/Miner-Hearth-ASIC-Dashboard.git
+cd Miner-Hearth-ASIC-Dashboard
 python miner_dashboard.py            REM opens the dashboard at http://127.0.0.1:8080
 python miner_dashboard.py --dry-run  REM watch only: never changes a miner
 ```
@@ -87,7 +87,7 @@ python -m unittest test_autotune test_v113 test_v114 test_v1154 test_v1155 test_
 **Build the installer**: install [NSIS 3](https://nsis.sourceforge.io/), put `MinerHearth.exe`, `VERSION`, `README.md`, `INSTALL.txt`, `enable-autostart.bat`, `disable-autostart.bat`, `config.json` and `packaging/miner_dashboard.ico` in one folder, then:
 
 ```bat
-makensis -DVERSION=1.17.0 -DSTAGE=<that folder> -DOUTFILE=MinerHearth-Setup-v1.17.0.exe packaging\installer.nsi
+makensis -DVERSION=1.17.1 -DSTAGE=<that folder> -DOUTFILE=MinerHearth-Setup-v1.17.1.exe packaging\installer.nsi
 ```
 
 **Live-update packages**: see `tools/make_update.py` (`genkey`, `build`).

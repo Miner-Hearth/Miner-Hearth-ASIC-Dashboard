@@ -1,0 +1,31 @@
+# Miner Hearth headless web edition: plain Docker / Docker Compose on any Linux computer
+# (Debian, Ubuntu, Raspberry Pi OS, a NAS, a 5tratumOS host, ...).
+#   docker compose up -d          then open http://<this-computer>:8080
+# Either pull the published image (ghcr.io/miner-hearth/miner-hearth), or build it first with
+#   docker build -t ghcr.io/miner-hearth/miner-hearth:1.17.1 <folder with the Dockerfile>
+# (the program's source folder, or image-source/ in the Umbrel / 5tratumOS zips).
+services:
+  miner-hearth:
+    image: ghcr.io/miner-hearth/miner-hearth:1.17.1
+    container_name: miner-hearth
+    user: "1000:1000"
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 30s
+    # Host networking lets Miner Hearth scan your home network for miners and see each browser's
+    # real address. On Docker Desktop (Windows / macOS) use the "ports:" lines instead.
+    network_mode: host
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - ./data:/data        # config.json, userdata/ and logs/ (create it first: mkdir data && sudo chown 1000:1000 data)
+    environment:
+      MINER_HEARTH_HOME: /data
+      MINER_HEARTH_PORT: "8080"
+      # Browsers on these networks get full control (like the Miner Hearth computer itself).
+      # Everyone else is a "LAN device": read-only, plus the optional PIN from Settings > LAN access.
+      # Narrow it to your own computer (e.g. 192.168.1.10/32), or leave it empty for read-only LAN access.
+      MINER_HEARTH_TRUSTED_NETWORKS: "192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
+      TZ: Etc/UTC
+    security_opt:
+      - no-new-privileges:true
