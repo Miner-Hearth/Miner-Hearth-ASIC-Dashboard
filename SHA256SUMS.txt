@@ -1,5 +1,0 @@
-c9afbc6e30acea1e7ff48744424a31f968a5b6e87ac1ba75ab087e94443151d7  MinerHearth-Setup-v1.17.0.exe
-c33532a4c376036d5bf62b982bd218654eaafefd2183df3dec19dc2b628c1c08  MinerHearth-Setup-v1.17.0.zip
-974df515be78cdd5d54906fe9253ac96e3eee4a291a930d461935e08b45ac2ec  MinerHearth-v1.17.0-portable.zip
-822dfae74b978f371d487a3309e48772e98db6503bce26cfa520e4ff6d4a944b  miner-hearth-umbrel-v1.17.0.zip
-d5e072d948994c3b7d702701c5c94913bed71936437ffa4b832a7d9f340900cb  miner-hearth-5tratumos-v1.17.0.zip
